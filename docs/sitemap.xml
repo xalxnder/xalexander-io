@@ -2,12 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://xalxnder.io/posts/hello-world/</loc>
+    <lastmod>2022-10-15T10:52:12-04:00</lastmod>
+  </url><url>
+    <loc>https://xalxnder.io/</loc>
+    <lastmod>2022-10-15T10:52:12-04:00</lastmod>
+  </url><url>
+    <loc>https://xalxnder.io/posts/</loc>
+    <lastmod>2022-10-15T10:52:12-04:00</lastmod>
+  </url><url>
     <loc>https://xalxnder.io/about/</loc>
     <lastmod>2022-10-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://xalxnder.io/categories/</loc>
-  </url><url>
-    <loc>https://xalxnder.io/</loc>
   </url><url>
     <loc>https://xalxnder.io/tags/</loc>
   </url>
