@@ -1,13 +1,13 @@
 baseURL: https://xalxnder.io
 languageCode: en-us
-title: ''
+title: ""
 theme: mini
 publishDir: docs
 
 # Default content language, support en (English) / zh (Chinese) / nl (Dutch) / fr (French) / es (Spanish), default 'en'
 defaultContentLanguage: en
 
-# !!! exampleSite only, you may need to delete the line: `themesDir: ../../` 
+# !!! exampleSite only, you may need to delete the line: `themesDir: ../../`
 # themesDir: ../../
 
 hasCJKLanguage: true
@@ -42,16 +42,14 @@ social:
   linkedin: your-github-link
   # facebook: your-facebook-link
 
-
 # Site parameters
 params:
   # Site Author
   author: Author
   # Author biography
-  bio: ''
+  bio: ""
   # Site Description, used in HTML meat
   description: My Blog
-
 
   ###########################################
   # Optional Configuration
@@ -72,7 +70,7 @@ params:
   # To hidden post summary in home page, you could set `hiddenPostSummaryInHomePage: true`, default is `false`
   hiddenPostSummaryInHomePage: false
   # Website copy write, default: '© Copyright 2021 ❤️ {params.author}'
-  copyright: '' 
+  copyright: ""
 
   # Extra links in navigation
   links:
