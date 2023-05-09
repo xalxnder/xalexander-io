@@ -1,0 +1,14 @@
+{
+  "list": [
+    {
+      "name":"Supreme Stock Bot",
+      "url":"https://github.com/xalxnder/supreme-stock-bot",
+      "desc":"Twitter bot that tweets items that are currently in stock on Supreme's webstore."
+    },
+    {
+      "name":"SpotiFork",
+      "url":"https://github.com/xalxnder/spotifork",
+      "desc":"Scrapes Pitchfork's `Latest Reviews` page for albums to add to my Spotify playlist."
+    }
+  ]
+}
