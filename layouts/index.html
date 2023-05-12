@@ -51,7 +51,7 @@
   {{ end }} {{ partial "optional-about.html" . }}
 </section>
 
-<section id="writing">
+<!-- <section id="writing">
   <span class="h1"
     ><a href="{{ .Site.Params.mainSection | absURL }}"
       >{{ .Site.Params.mainSectionTitle | default "Writings" }}</a
@@ -117,7 +117,7 @@
     {{ end }}
   </ul>
   {{ end }}
-</section>
+</section> -->
 
 {{ $showProjectsList := false }} {{ if (isset .Site.Params "showprojectslist")
 }} {{ $showProjectsList = .Site.Params.showProjectsList }} {{ else if
