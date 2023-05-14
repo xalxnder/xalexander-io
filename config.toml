@@ -25,10 +25,10 @@ weight = 2
 # url = "/tags"
 # weight = 3
 
-[[menu.main]]
-name = "About"
-url = "/about"
-weight = 4
+# [[menu.main]]
+# name = "About"
+# url = "/about"
+# weight = 4
 
 [markup]
   [markup.tableOfContents]
