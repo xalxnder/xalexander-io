@@ -1,16 +1,21 @@
 {
     "list": [
+      {"desc": "Some of the skills and tools I’ve picked up over the years through a combination self-directed learning, and working on side projects."},
       {
-        "name":"Python"
+        "name":"Programming with Python"
       },
       {
-        "name":"Linux"
+        "name":"Linux Server Administration"
+      },
+
+      {
+        "name":"Containerization with Docker"
       },
       {
-        "name":"Concourse"
+        "name":"Virtualization with Vagrant"
       },
       {
-        "name":"Elasticsearch"
+        "name":"Logging and Observability with Elasticsearch"
       }
     ]
   }
