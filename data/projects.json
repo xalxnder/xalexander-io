@@ -9,6 +9,11 @@
       "name":"SpotiFork",
       "url":"https://github.com/xalxnder/spotifork",
       "desc":"Scrapes Pitchfork's `Latest Reviews` page for albums to add to my Spotify playlist."
+    },
+    {
+      "name":"Turtle Crossing",
+      "url":"https://github.com/xalxnder/turtle-crossing",
+      "desc":"Frogger, but with a ......🐢. Game built Turtle Graphics."
     }
   ]
 }
