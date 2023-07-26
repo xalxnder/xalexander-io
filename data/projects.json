@@ -14,6 +14,11 @@
       "name":"Turtle Crossing",
       "url":"https://github.com/xalxnder/turtle-crossing",
       "desc":"Frogger, but with a ......🐢. Game built Turtle Graphics."
+    },
+    {
+      "name":"Kubernetes Microservice Project",
+      "url":"https://github.com/xalxnder/k8s-project",
+      "desc":"Kubernetes cluster running in AWS."
     }
   ]
 }
