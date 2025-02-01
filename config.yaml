@@ -59,9 +59,9 @@ params:
     enabled: true # needs to be explicitly set
     title: ExampleSite
     subtitle: "This is subtitle"
-    imageUrl: "<img location>"
-    imageWidth: 120
-    imageHeight: 120
+    imageUrl: "https://raw.githubusercontent.com/xalxnder/xalexander-io/refs/heads/main/assets/me.jpg?token=GHSAT0AAAAAAC2BKJW7RMYVJ7JHMECLR3GGZ45WBGA"
+    imageWidth: 250
+    imageHeight: 320
     imageTitle: my image
     buttons:
       - name: Posts
