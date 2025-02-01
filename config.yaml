@@ -1,5 +1,5 @@
 baseURL: "https://xalexander.io/"
-title: ExampleSite
+title: Xavier Alexander
 paginate: 5
 # theme: PaperMod
 
@@ -14,7 +14,7 @@ minify:
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
-  title: ExampleSite
+  title: Xavier Alexander
   description: "ExampleSite description"
   keywords: [Blog, Portfolio, PaperMod]
   author: Me
@@ -57,17 +57,18 @@ params:
   # profile-mode
   profileMode:
     enabled: true # needs to be explicitly set
-    title: ExampleSite
-    subtitle: "This is subtitle"
+    title: Xavier Alexander
+    subtitle: "Dad 👪 | DevSecOps Engineer 🧑🏾‍💻 | Runner 🏃🏾‍♂️‍➡️"
+    subtitle2: ""
     imageUrl: "https://github.com/xalxnder/xalexander-io/blob/main/images/me_square.jpg?raw=true"
     imageWidth: 275
     imageHeight: 280
     imageTitle: my image
-    buttons:
-      - name: Posts
-        url: posts
-      - name: Tags
-        url: tags
+    # buttons:
+    #   - name: Posts
+    #     url: posts
+    #   - name: Tags
+    #     url: tags
 
   # home-info mode
   homeInfoParams:
@@ -121,9 +122,13 @@ menu:
       name: tags
       url: /tags/
       weight: 20
-    - identifier: example
-      name: example.org
-      url: https://example.org
+    - identifier: docs
+      name: docs
+      url: https://docs.xalexander.io
+      weight: 30
+    - identifier: blog
+      name: blog
+      url: https://techwithx.io
       weight: 30
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
