@@ -59,7 +59,7 @@ params:
     enabled: true # needs to be explicitly set
     title: ExampleSite
     subtitle: "This is subtitle"
-    imageUrl: "https://github.com/xalxnder/xalexander-io/blob/main/assets/me_square.jpg?raw=true"
+    imageUrl: "https://github.com/xalxnder/xalexander-io/blob/main/images/me_square.jpg?raw=true"
     imageWidth: 275
     imageHeight: 280
     imageTitle: my image
