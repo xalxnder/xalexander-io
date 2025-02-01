@@ -1,6 +1,8 @@
 baseURL: "https://xalexander.io/"
 title: Xavier Alexander
 paginate: 5
+# permalinks:
+#   posts: "blog/"
 # theme: PaperMod
 
 enableRobotsTXT: true
@@ -78,9 +80,9 @@ params:
   socialIcons:
     - name: x
       url: "https://x.com/"
+    - name: linkedin
+      url: "https://www.linkedin.com/in/xalexander/"
     - name: stackoverflow
-      url: "https://stackoverflow.com"
-    - name: github
       url: "https://github.com/"
 
   analytics:
@@ -128,7 +130,7 @@ menu:
       weight: 30
     - identifier: blog
       name: blog
-      url: https://techwithx.io
+      url: /blog/
       weight: 30
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
