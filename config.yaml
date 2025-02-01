@@ -60,7 +60,7 @@ params:
     title: ExampleSite
     subtitle: "This is subtitle"
     imageUrl: "https://github.com/xalxnder/xalexander-io/blob/main/assets/me_square.jpg?raw=true"
-    imageWidth: 250
+    imageWidth: 275
     imageHeight: 280
     imageTitle: my image
     buttons:
