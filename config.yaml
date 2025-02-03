@@ -79,11 +79,9 @@ params:
 
   socialIcons:
     - name: x
-      url: "https://x.com/"
+      url: "https://x.com/xalexander_io"
     - name: linkedin
       url: "https://www.linkedin.com/in/xalexander/"
-    - name: stackoverflow
-      url: "https://github.com/"
 
   analytics:
     google:
