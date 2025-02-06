@@ -161,6 +161,14 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
+
+### Deploy A CNI
+> [!Note] Explanation
+> In order for your pods to communicate with each other, you need to install a Container Network Interface(CNI)
+
+
+There are a ton of network plugins to choose from. I ended up going with Cilium. Why? I really like the Hubble UI feature. Installation steps can be found [here](https://docs.cilium.io/en/stable/gettingstarted/k8s-install-default/#install-the-cilium-cli).
+
 ---
 ## On The Worker Nodes Only
 The following should be completed on the worker nodes only.
@@ -181,15 +189,6 @@ Now you can join worker nodes to the control plane. From the output you saved ea
 kubeadm join {HOST IP}:6443 --token {TOKEN} --discovery-token-ca-cert-hash sha256:{HASH}
 ```
 This will take a few minutes, but if it was successful, you'll get a message with the following. `This node has joined the cluster`
-
-
-### Deploy A CNI
-> [!Note] Explanation
-> In order for your pods to communicate with each other, you need to install a Container Network Interface(CNI)
-
-
-There are a ton of network plugins to choose from. I ended up going with Cilium. Why? I really like the Hubble UI feature. Installation steps can be found [here](https://docs.cilium.io/en/stable/gettingstarted/k8s-install-default/#install-the-cilium-cli).
-
 
 #### Conclusion
 If all went well, you should now have a 3 node cluster! To verify, create a pod
