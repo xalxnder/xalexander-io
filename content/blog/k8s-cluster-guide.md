@@ -1,11 +1,11 @@
 ---
 draft: false
-title: Installing a 3 Node Kubernetes Cluster
+title: How I Set Up a 3 Node Kubernetes Cluster
 ---
 
 Six months ago, I started a new job as a DevSecOps engineer. During the interview process the team gave me a heads up about what tools they used. I was excited to learn Kubernetes was one of them. I thought to myself, "Cool, I'll be ready. I've done a few tutorials on this." But after the first few days,I quickly realized I was wrong—I was not ready 😂. I wasn’t just dealing with single-container pods like in the tutorials. I was now faced with terms like `Ingress`, `CRDs`, and `PVCs`… none of it made sense. The days of simple walkthroughs were long gone. I needed a homelab to start building for real. I ordered the following [beelink](https://www.amazon.com/dp/B0D5Y4BKZD?th=1), installed proxmox, and hit the ground running. 
 
-In this post I'll be walking through how I installed a 3 node kubernetes cluster
+In this post I'll be walking through how I set up a 3 node kubernetes cluster
 
 
 
