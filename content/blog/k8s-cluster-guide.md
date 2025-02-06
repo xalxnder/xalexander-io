@@ -190,7 +190,7 @@ kubeadm join {HOST IP}:6443 --token {TOKEN} --discovery-token-ca-cert-hash sha25
 ```
 This will take a few minutes, but if it was successful, you'll get a message with the following. `This node has joined the cluster`
 
-#### Conclusion
+# Conclusion
 If all went well, you should now have a 3 node cluster! To verify, create a pod
 ```bash
 [xavier@lab-cp ~]$ kubectl run mypod --image=nginx:latest
