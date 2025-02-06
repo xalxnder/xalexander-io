@@ -9,15 +9,16 @@
       <url>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.128.2</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title></title>
+      <title>Installing a 3 Node Kubernetes Cluster</title>
       <link>http://localhost:1313/blog/hey/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/blog/hey/</guid>
-      <description>HEY echo&amp;#34;hello&amp;#34; </description>
+      <description>&lt;h2 id=&#34;backstory&#34;&gt;Backstory&lt;/h2&gt;
+&lt;p&gt;Six months ago, I started a new job as a DevSecOps engineer. During the interview process the team gave me a heads up about what tools they used. I was excited to learn Kubernetes was one of them. I thought to myself, &amp;ldquo;Cool, I&amp;rsquo;ll be ready. I&amp;rsquo;ve done a few tutorials on this.&amp;rdquo; But after starting, I realized I was wrong. I was not ready 😂. Within the first two weeks, my head was spinning. I wasn’t just dealing with single container pods like i had before. No no, I was dealling with full-scale deployments, behind proxies, etc. Long gone were the days of tutorials. I needed to &lt;strong&gt;start building&lt;/strong&gt;. I ordered the following beelink. This was going to be my sandbox. I hit the ground running. In this post I&amp;rsquo;ll be walking through how to install a three node kuberentes cluster via Kubeadm.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

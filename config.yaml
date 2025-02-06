@@ -1,6 +1,11 @@
 baseURL: "https://xalexander.io/"
 title: Xavier Alexander
-paginate: 5
+pagination.pagerSize: 5
+
+module:
+  imports:
+    - path: "hugo-admonitions"
+
 # permalinks:
 #   posts: "blog/"
 # theme: PaperMod
