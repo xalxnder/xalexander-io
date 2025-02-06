@@ -3,23 +3,21 @@ draft: false
 title: Installing a 3 Node Kubernetes Cluster
 ---
 
-## Backstory 
-Six months ago, I started a new job as a DevSecOps engineer. During the interview process the team gave me a heads up about what tools they used. I was excited to learn Kubernetes was one of them. I thought to myself, "Cool, I'll be ready. I've done a few tutorials on this." But after starting, I realized I was wrong. I was not ready 😂. Within the first two weeks, my head was spinning. I wasn’t just dealing with single container pods like i had before. No no, I was dealling with full-scale deployments, behind proxies, etc. Long gone were the days of tutorials. I needed to **start building**. I ordered the following beelink. This was going to be my sandbox. I hit the ground running. In this post I'll be walking through how to install a three node kuberentes cluster via Kubeadm.
+Six months ago, I started a new job as a DevSecOps engineer. During the interview process the team gave me a heads up about what tools they used. I was excited to learn Kubernetes was one of them. I thought to myself, "Cool, I'll be ready. I've done a few tutorials on this." But after the first few days,I quickly realized I was wrong—I was not ready 😂. I wasn’t just dealing with single-container pods like in the tutorials. I was now faced with terms like `Ingress`, `CRDs`, and `PVCs`… none of it made sense. The days of simple walkthroughs were long gone. I needed a homelab to start building for real. I ordered the following [beelink](https://www.amazon.com/dp/B0D5Y4BKZD?th=1), installed proxmox, and hit the ground running. 
 
-There are numerous ways to get a kubernetes cluster up and running. Minikube, k3s, and talos to name a few. Why did I chose to go the kubeadm route? Because I'm a glutton for punishment. No, in all seriousness, I'm a all or nothing person. I'f I'm going to install kubernetes, I want to install it how teams in production environments are installing it.
-
+In this post I'll be walking through how I installed a 3 node kubernetes cluster
 
 
-#### Requirements
+
+# Requirements
 - 3 VMs 
+- 2 GB or more of RAM per machine 
+- 2 CPUs or more for control plane machines.
+- OS - I'm using Rocky Linux
 
-I’m going to break the actual steps down into two parts. On the control plane node, on every Node
-
-
-
-
-
-# On Every Node
+---
+## On Every Node
+The following should be completed on every node. 
 
 ### Disable Swap
 
@@ -39,14 +37,18 @@ Swap:              0           0           0
 ```
 ### Install Containerd
 > [!Note] Explanation
-> To run containers in pods, we need a container runtime. I went with containerd
+> To run containers in pods, we need a container runtime. I went with containerd.
 
 ```bash
+# This command adds the docker repoistory 
 sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+# This command installs containerd
 sudo dnf install containerd
 ```
 
-Verify by checking its status
+Ensure containerd is healthy:
+
 ```bash
 [xavier@lab-cp ~]$ systemctl status containerd
 ● containerd.service - containerd container runtime
@@ -56,6 +58,10 @@ Verify by checking its status
 ```
 
 ### Install kubelet, kubeadm, and kubectl
+> [!Note] Explanation
+> - kubelet: The primary node agent that runs on each node, ensuring containers are running.
+> - kubeadm: A tool that helps bootstrap and manage Kubernetes clusters.
+> - kubectl: The command-line tool used to interact with the Kubernetes API and manage cluster resources.
 ```bash
 # This overwrites any existing configuration in /etc/yum.repos.d/kubernetes.repo
 cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
@@ -68,6 +74,7 @@ gpgkey=https://pkgs.k8s.io/core:/stable:/v1.32/rpm/repodata/repomd.xml.key
 exclude=kubelet kubeadm kubectl cri-tools kubernetes-cni
 EOF
 
+#--disableexcludes=kubernetes ensures that no repository exclusions prevent the installation of these packages.
 sudo yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 ```
 
@@ -76,9 +83,11 @@ sudo yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 > [!Note] Explanation
 > The kubelet and the underlying container runtime need to interface with cgroups(coontrol groups) to enforce resource management for pods and containers which includes cpu/memory requests and limits for containerized workloads. The cgroup (control group) driver is responsible for managing and allocating system resources such as CPU and memory to containers. 
 ```bash
+# This command moves (renames) the existing config.toml file to config.toml.bak as a backup.
 $ sudo mv /etc/containerd/config.toml /etc/containerd/config.toml.bak
+
+# This command generates the default configuration for containerd, a container runtime, and writes it to a new config.toml file.
 $ containerd config default > config.toml
-$ vim config.toml
 ```
 In the config.toml file, set `SystemdCgroup` to true
 ![](https://miro.medium.com/v2/resize:fit:1400/0*9xY_Av2HZiL6FD_b)
@@ -88,7 +97,7 @@ In the config.toml file, set `SystemdCgroup` to true
 > [!Note] Explanation
 > When setting up a Kubernetes cluster, we need to adjust certain kernel parameters to ensure that networking functions correctly. These settings control how the Linux kernel handles network traffic, particularly when dealing with bridged network interfaces and packet forwarding.
 
-`vim /etc/sysctl.d/k8s.conf`
+Edit the `/etc/sysctl.d/k8s.conf` file.
 
 ```bash
 net.ipv4.ip_forward = 1
@@ -96,7 +105,8 @@ net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 ```
 ---
-# On The Control Plane Only
+## On The Control Plane Only
+The following should be completed on the control plane, only.
 
 ### Open The Required Ports
 
@@ -109,6 +119,9 @@ net.bridge.bridge-nf-call-iptables = 1
 | TCP      | Inbound   | 10257      | kube-controller-manager      | Self                        |
 
 ### Initialize The Cluster
+> [!Note] Explanation
+> kubeadm init sets up the control plane, configuring essential components like the API server, scheduler, and controller manager.
+
 ```bash
 sudo kubeadm init --apiserver-advertise-address {HOST IP} --pod-network-cidr 10.244.0.0/16
 ```
@@ -140,16 +153,19 @@ kubeadm join {HOST IP}:6443 --token {TOKEN} \
 Save this output somewhere. You'll need it shortly. 
 
 ### Set Up KUBECONFIG
+>[!Note] Explanation
+>A kubeconfig file is a configuration file used by Kubernetes to store information about clusters, users, namespaces, and authentication mechanisms, allowing the kubectl command-line tool to connect and interact with a Kubernetes cluster by providing necessary credentials and access details to the cluster's API server; essentially, it acts as a central hub to manage access to multiple Kubernetes clusters from a single location. 
+
 ```bash
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 ---
-# On The Worker Nodes Only
+## On The Worker Nodes Only
+The following should be completed on the worker nodes only.
 
 ### Open The Required Ports
-## Worker Node(s)
 
 | Protocol | Direction | Port Range     | Purpose              | Used By              |
 |----------|-----------|---------------|----------------------|----------------------|
@@ -160,10 +176,30 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 
 
-Now you can join worker nodes to the control plane. From the output you saved earlier, as sudo run the kubeadm join command. This will take a few minutes, but if it was succesful, youll get a message with the following. `This node has joined the cluster`
+Now you can join worker nodes to the control plane. From the output you saved earlier, as sudo, run the kubeadm join command. 
+```bash
+kubeadm join {HOST IP}:6443 --token {TOKEN} --discovery-token-ca-cert-hash sha256:{HASH}
+```
+This will take a few minutes, but if it was successful, you'll get a message with the following. `This node has joined the cluster`
 
-Do this agin on the remainder nodes. Once you're finished, head back over to your control plane and run `kubecl get nodes`
 
 ### Deploy A CNI
 > [!Note] Explanation
 > In order for your pods to communicate with each other, you need to install a Container Network Interface(CNI)
+
+
+There are a ton of network plugins to choose from. I ended up going with Cilium. Why? I really like the Hubble UI feature. Installation steps can be found [here](https://docs.cilium.io/en/stable/gettingstarted/k8s-install-default/#install-the-cilium-cli).
+
+
+#### Conclusion
+If all went well, you should now have a 3 node cluster! To verify, create a pod
+```bash
+[xavier@lab-cp ~]$ kubectl run mypod --image=nginx:latest
+pod/mypod created
+[xavier@lab-cp ~]$ k get pods
+NAME            READY   STATUS    RESTARTS   AGE
+mypod           1/1     Running   0          36s
+```
+There are much easier ways to set up a cluster, but using kubeadm gives you a deeper understanding of how Kubernetes works under the hood. 
+
+This method also provides more flexibility, allowing you to customize your setup based on your needs. Whether you’re setting up a test environment or preparing for a production deployment, mastering the fundamentals will make troubleshooting and scaling your cluster much easier.
