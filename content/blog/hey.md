@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 title: Installing a 3 Node Kubernetes Cluster
 ---
 
@@ -14,6 +14,10 @@ There are numerous ways to get a kubernetes cluster up and running. Minikube, k3
 - 3 VMs 
 
 I’m going to break the actual steps down into two parts. On the control plane node, on every Node
+
+
+
+
 
 # On Every Node
 
@@ -33,20 +37,22 @@ Confirm by running the `free` command. You should see 0s for the Swap row.
 Mem:            3562        1725         769          17        1316        1836
 Swap:              0           0           0
 ```
----
 ### Install Containerd
 > [!Note] Explanation
 > To run containers in pods, we need a container runtime. I went with containerd
 
 ```bash
 sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-
 sudo dnf install containerd
 ```
 
 Verify by checking its status
 ```bash
-systemctl status containerd
+[xavier@lab-cp ~]$ systemctl status containerd
+● containerd.service - containerd container runtime
+     Loaded: loaded (/usr/lib/systemd/system/containerd.service; enabled; preset: disabled)
+     Active: active (running) since Tue 2025-01-21 18:32:57 EST; 2 weeks 1 day ago
+       Docs: https://containerd.io
 ```
 
 ### Install kubelet, kubeadm, and kubectl
@@ -77,14 +83,6 @@ $ vim config.toml
 In the config.toml file, set `SystemdCgroup` to true
 ![](https://miro.medium.com/v2/resize:fit:1400/0*9xY_Av2HZiL6FD_b)
 
-### Add Kuberenetes Modules
-`vim /etc/modules-load.d/k8s.conf`
-
-![](https://miro.medium.com/v2/resize:fit:1400/0*P81ijuh8F3tNon9U)
-```bash
-sudo modprobe overlay
-sudo modprobe br_netfilter
-```
 
 ### Network Configuration
 > [!Note] Explanation
@@ -97,9 +95,19 @@ net.ipv4.ip_forward = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 ```
+---
+# On The Control Plane Only
 
+### Open The Required Ports
 
-# On The Control Plane 
+| Protocol | Direction | Port Range  | Purpose                      | Used By                     |
+|----------|-----------|------------|------------------------------|-----------------------------|
+| TCP      | Inbound   | 6443       | Kubernetes API server        | All                         |
+| TCP      | Inbound   | 2379-2380  | etcd server client API       | kube-apiserver, etcd        |
+| TCP      | Inbound   | 10250      | Kubelet API                  | Self, Control plane         |
+| TCP      | Inbound   | 10259      | kube-scheduler               | Self                        |
+| TCP      | Inbound   | 10257      | kube-controller-manager      | Self                        |
+
 ### Initialize The Cluster
 ```bash
 sudo kubeadm init --apiserver-advertise-address {HOST IP} --pod-network-cidr 10.244.0.0/16
@@ -129,13 +137,33 @@ kubeadm join {HOST IP}:6443 --token {TOKEN} \
 	--discovery-token-ca-cert-hash sha256:{HASH}
 ```
 
+Save this output somewhere. You'll need it shortly. 
+
 ### Set Up KUBECONFIG
 ```bash
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
+---
+# On The Worker Nodes Only
 
-### Deploy A 
+### Open The Required Ports
+## Worker Node(s)
+
+| Protocol | Direction | Port Range     | Purpose              | Used By              |
+|----------|-----------|---------------|----------------------|----------------------|
+| TCP      | Inbound   | 10250         | Kubelet API         | Self, Control plane  |
+| TCP      | Inbound   | 10256         | kube-proxy          | Self, Load balancers |
+| TCP      | Inbound   | 30000-32767   | NodePort Services†  | All                  
+
+
+
+
+Now you can join worker nodes to the control plane. From the output you saved earlier, as sudo run the kubeadm join command. This will take a few minutes, but if it was succesful, youll get a message with the following. `This node has joined the cluster`
+
+Do this agin on the remainder nodes. Once you're finished, head back over to your control plane and run `kubecl get nodes`
+
+### Deploy A CNI
 > [!Note] Explanation
 > In order for your pods to communicate with each other, you need to install a Container Network Interface(CNI)
