@@ -167,7 +167,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 > In order for your pods to communicate with each other, you need to install a Container Network Interface(CNI)
 
 
-There are a ton of network plugins to choose from. I ended up going with Cilium. Why? I really like the Hubble UI feature. Installation steps can be found [here](https://docs.cilium.io/en/stable/gettingstarted/k8s-install-default/#install-the-cilium-cli).
+There are a ton of network plugins to choose from. I ended up going with Cilium. Installation steps can be found [here](https://docs.cilium.io/en/stable/gettingstarted/k8s-install-default/#install-the-cilium-cli).
 
 ---
 ## On The Worker Nodes Only
