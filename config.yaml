@@ -28,7 +28,7 @@ params:
   # author: ["Me", "You"] # multiple authors
   images:
     [
-      "https://github.com/xalxnder/xalexander-io/blob/main/images/avatar.png?raw=true",
+      "https://github.com/xalxnder/xalexander-io/blob/main/images/avatar_white.png?raw=true",
     ]
   DateFormat: "January 2, 2006"
   defaultTheme: auto # dark, light
