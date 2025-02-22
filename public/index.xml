@@ -6,12 +6,20 @@
     <description>Recent content on Xavier Alexander</description>
     <image>
       <title>Xavier Alexander</title>
-      <url>https://github.com/xalxnder/xalexander-io/blob/main/images/avatar.png?raw=true</url>
-      <link>https://github.com/xalxnder/xalexander-io/blob/main/images/avatar.png?raw=true</link>
+      <url>https://github.com/xalxnder/xalexander-io/blob/main/images/avatar_white.png?raw=true</url>
+      <link>https://github.com/xalxnder/xalexander-io/blob/main/images/avatar_white.png?raw=true</link>
     </image>
     <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Breaking Things (Slightly) with a Nexus Upgrade: A Retrospective</title>
+      <link>http://localhost:1313/blog/nexus-upgrade/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/nexus-upgrade/</guid>
+      <description>&lt;h3 id=&#34;pre-upgrade&#34;&gt;Pre-Upgrade&lt;/h3&gt;
+&lt;p&gt;Last night, I upgraded Nexus Repository Manager at my job. Nexus acts as a central hub for storing and distributing binaries, serving as a proxy for remote repositories, and hosting private artifacts. It sits behind Traefik, both of which are defined in a Docker Compose file. Since Traefik also needed an update, I figured I’d kill two birds with one stone 😅. I wasn’t nervous about the Nexus upgrade—it was a minor version jump. But Traefik? That made me nervous because it was a big jump.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>How I Set Up a 3 Node Kubernetes Cluster</title>
       <link>http://localhost:1313/blog/k8s-cluster-guide/</link>
