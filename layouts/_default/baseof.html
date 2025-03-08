@@ -19,6 +19,7 @@
 " id="top">
     {{- partialCached "header.html" . .Page -}}
     <main class="main">
+        <a rel="me" href="https://mastodon.social/@xalexander"></a>
         {{- block "main" . }}{{ end }}
     </main>
     {{ partialCached "footer.html" . .Layout .Kind (.Param "hideFooter") (.Param "ShowCodeCopyButtons") -}}

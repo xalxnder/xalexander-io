@@ -9,7 +9,7 @@
       <url>https://github.com/xalxnder/xalexander-io/blob/main/images/avatar_white.png?raw=true</url>
       <link>https://github.com/xalxnder/xalexander-io/blob/main/images/avatar_white.png?raw=true</link>
     </image>
-    <generator>Hugo -- 0.143.1</generator>
+    <generator>Hugo -- 0.145.0</generator>
     <language>en</language>
     <atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -19,6 +19,15 @@
       <guid>http://localhost:1313/blog/nexus-upgrade/</guid>
       <description>&lt;h3 id=&#34;pre-upgrade&#34;&gt;Pre-Upgrade&lt;/h3&gt;
 &lt;p&gt;Last night, I upgraded Nexus Repository Manager at my job. Nexus acts as a central hub for storing and distributing binaries, serving as a proxy for remote repositories, and hosting private artifacts. It sits behind Traefik, both of which are defined in a Docker Compose file. Since Traefik also needed an update, I figured I’d kill two birds with one stone 😅. I wasn’t nervous about the Nexus upgrade—it was a minor version jump. But Traefik? That made me nervous because it was a big jump.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Configuring Argo CD With Application Sets</title>
+      <link>http://localhost:1313/blog/argo-application-sets/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/argo-application-sets/</guid>
+      <description>&lt;p&gt;In my homelab environment, I use Argo CD to manage and automate my Kubernetes deployments. When I initially set it up, adding a new application meant manually clicking the “New App” button and filling out a form with details like the name, sync options, and repository URL. However, I quickly realized two things:
+1.	My setup would continue to grow, meaning I’d be onboarding new applications regularly.
+2.	There was no way I was going to manually configure every single application.&lt;/p&gt;</description>
     </item>
     <item>
       <title>How I Set Up a 3 Node Kubernetes Cluster</title>

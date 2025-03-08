@@ -8,6 +8,8 @@
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
   </url><url>
+    <loc>http://localhost:1313/blog/argo-application-sets/</loc>
+  </url><url>
     <loc>http://localhost:1313/blog/k8s-cluster-guide/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
